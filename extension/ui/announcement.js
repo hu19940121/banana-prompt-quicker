@@ -97,10 +97,12 @@ window.UI.Announcement = class AnnouncementComponent {
 
         container.innerHTML = ''; // Clear
 
-        const icon = h('span', { style: 'margin-right: 8px;' }, '📢');
+        const isXhs = item.link && item.link.includes('xiaohongshu.com');
+        const icon = h('span', { style: 'margin-right: 8px;' }, isXhs ? '📕' : '📢');
 
         const textStyle = 'display: inline-block; white-space: nowrap; transition: transform 0.3s;';
-        const text = h('span', { style: textStyle }, item.content);
+        const textContent = isXhs ? `${item.content} ↗` : item.content;
+        const text = h('span', { style: textStyle }, textContent);
 
         if (item.link) {
             text.style.cursor = 'pointer';
